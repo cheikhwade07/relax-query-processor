@@ -1,0 +1,67 @@
+RELAX Demo – How to Run and Test
+
+To start the RELAX console:
+👉 Open your project, go to APP.main, and run it.
+You should see the prompt:
+
+RELAX-style console. Type :help ; for commands.
+relax>
+
+
+Now you can paste the commands below one by one to test all required operations.
+
+Step 1. Define Relations
+Employees (Name, Age, EmpDept) = {
+  John, 32, HR
+  Alice, 28, IT
+  Bob, 29, IT
+  Mary, 35, Finance
+  Tom, 40, HR
+};
+
+Departments (DeptCode, Manager) = {
+  HR, Smith
+  IT, Clark
+  Finance, Alice
+};
+
+Contractors (Name, Age, EmpDept) = {
+  Anna, 30, IT
+  Mark, 35, Sales
+  Bob, 29, IT
+  Tom, 40, HR
+};
+
+Step 2. Selection (σ)
+σ Age > 30 (Employees);
+select Age > 30 (Employees);
+
+Step 3. Projection (π)
+π Name, EmpDept (Employees);
+project Name, EmpDept (Employees);
+
+Step 4. Join (⋈ / ⨝ / join)
+Employees join EmpDept=DeptCode Departments;
+Employees ⨝ EmpDept=DeptCode Departments;
+
+π Name, EmpDept, Manager (Employees join EmpDept=DeptCode Departments);
+
+Step 5. Union (∪)
+Employees ∪   Contractors;
+Employees union Contractors;
+
+Step 6. Intersection (∩)
+Employees ∩ Contractors;
+Employees intersect Contractors;
+
+Step 7. Difference (−)
+Employees − Contractors;
+Employees - Contractors;
+Employees difference Contractors;
+
+Step 8. Nested Query Example
+π Name (σ Age > 30 (Employees));
+
+This selects employees older than 30 and then projects only their names.
+
+✅ That’s it! With this walkthrough, you can test Selection, Projection, Join, Union, Intersection, and Difference .
